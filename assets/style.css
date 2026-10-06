@@ -1,168 +1,179 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;1,8..60,300;1,8..60,400&family=Roboto+Serif:ital,opsz,wght@0,8..144,300;0,8..144,400;0,8..144,500;1,8..144,300;1,8..144,400&display=swap');
+/* ═══════════════════════════════════════════════
+   MURTAZA ABDULLAH — Modern dark portfolio
+   Roboto + Roboto Mono + Playfair Display
+   ═══════════════════════════════════════════════ */
 
-*,
-*::before,
-*::after {
+*, *::before, *::after {
   box-sizing: border-box;
-}
-
-:root {
-  --bg: #0d0d0f;
-  --bg-2: #131316;
-  --bg-surface: #1a1a1f;
-  --ink: #e8e4dc;
-  --ink-dim: #b5b0a8;
-  --muted: #706b63;
-  --accent: #c9a96e;
-  --accent-dim: #8a6f45;
-  --line: #2a2a30;
-  --line-strong: #3a3a42;
-  --font-display: "Playfair Display", "Roboto Serif", Georgia, serif;
-  --font-body: "Roboto Serif", "Source Serif 4", Georgia, serif;
-  --transition: 0.2s ease;
-}
-
-html,
-body {
   margin: 0;
   padding: 0;
+}
+
+/* ── Design tokens ───────────────────────────── */
+:root {
+  --bg:          #080810;
+  --bg-card:     #0f0f18;
+  --bg-hover:    #14141f;
+  --border:      #1e1e2e;
+  --border-lit:  #2e2e44;
+  --ink:         #e2dff5;
+  --ink-2:       #9b98b8;
+  --ink-3:       #5c5a72;
+  --accent:      #7c6aff;
+  --accent-glow: rgba(124, 106, 255, 0.15);
+  --green:       #3ecf8e;
+  --amber:       #f5a623;
+
+  --font-sans:   "Roboto", system-ui, sans-serif;
+  --font-mono:   "Roboto Mono", monospace;
+  --font-serif:  "Playfair Display", Georgia, serif;
+
+  --ease:        cubic-bezier(0.4, 0, 0.2, 1);
+  --t:           180ms;
+
+  --max-w:       44rem;
+  --pad-x:       1.5rem;
+}
+
+/* ── Base ────────────────────────────────────── */
+html {
   background: var(--bg);
   color: var(--ink);
+  scroll-behavior: smooth;
 }
 
 body {
-  max-width: 46rem;
-  margin: 0 auto;
-  padding: 3rem 1.5rem 6rem;
-  font-family: var(--font-body);
-  font-size: 1.1rem;
-  font-optical-sizing: auto;
-  line-height: 1.75;
+  font-family: var(--font-sans);
+  font-size: 1rem;
   font-weight: 300;
+  line-height: 1.75;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--pad-x) 6rem;
+  -webkit-font-smoothing: antialiased;
 }
 
 ::selection {
-  background: var(--accent-dim);
+  background: var(--accent-glow);
   color: var(--ink);
 }
 
+/* ── Links ───────────────────────────────────── */
 a {
-  color: var(--ink);
-  text-underline-offset: 0.2em;
-  transition: color var(--transition), opacity var(--transition);
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--t) var(--ease);
 }
 
-a:hover {
-  color: var(--accent);
-  text-decoration-thickness: 1.5px;
-}
-
-/* ─── Header ─────────────────────────────── */
-
+/* ── Header ──────────────────────────────────── */
 header {
   display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
-  gap: 0.75rem 1.5rem;
-  border-bottom: 1px solid var(--line-strong);
-  padding-bottom: 1.5rem;
-  margin-bottom: 3rem;
+  gap: 1rem;
+  padding: 2rem 0 2rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 4rem;
+  flex-wrap: wrap;
 }
 
 .site-title {
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
   font-weight: 500;
   letter-spacing: -0.02em;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-.site-title a {
-  text-decoration: none;
-  background: linear-gradient(135deg, var(--ink) 0%, var(--accent) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.site-title::before {
+  content: ">";
+  color: var(--accent);
+  font-weight: 400;
 }
 
 nav {
   display: flex;
-  gap: 1.5rem;
-  align-items: center;
+  gap: 0.25rem;
 }
 
 nav a {
-  font-size: 0.72rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: var(--ink-dim);
-  transition: color var(--transition);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--ink-3);
+  padding: 0.35rem 0.75rem;
+  border: 1px solid transparent;
+  letter-spacing: 0.05em;
+  transition: color var(--t) var(--ease), border-color var(--t) var(--ease), background var(--t) var(--ease);
 }
 
 nav a:hover {
-  color: var(--accent);
+  color: var(--ink);
+  border-color: var(--border-lit);
+  background: var(--bg-hover);
 }
 
 nav a[aria-current="page"] {
-  color: var(--ink);
-  text-decoration: underline;
-  text-underline-offset: 0.3em;
-  text-decoration-color: var(--accent);
+  color: var(--accent);
+  border-color: var(--border-lit);
+  background: var(--accent-glow);
 }
 
-/* ─── Typography ─────────────────────────── */
-
+/* ── Hero / Intro ────────────────────────────── */
 .kicker {
-  margin: 0 0 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
   font-size: 0.72rem;
-  letter-spacing: 0.2em;
+  font-weight: 400;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--accent);
-  font-family: var(--font-body);
-  font-weight: 400;
+  color: var(--green);
+  margin-bottom: 1.25rem;
 }
 
-.display,
-h1 {
-  margin: 0 0 1.5rem;
-  font-family: var(--font-display);
-  font-size: clamp(2.4rem, 6vw, 3.5rem);
+.kicker::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: var(--green);
+  border-radius: 50%;
+  animation: pulse 2.5s ease infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(0.8); }
+}
+
+h1, .display {
+  font-family: var(--font-serif);
+  font-size: clamp(2.2rem, 5.5vw, 3.4rem);
   font-weight: 400;
   font-style: italic;
-  line-height: 1.1;
-  letter-spacing: -0.03em;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
   color: var(--ink);
-}
-
-h2 {
-  margin: 3rem 0 1rem;
-  font-family: var(--font-display);
-  font-size: 1.65rem;
-  font-weight: 400;
-  font-style: italic;
-  line-height: 1.2;
-  color: var(--ink-dim);
-  letter-spacing: -0.01em;
-}
-
-h2::before {
-  content: "— ";
-  color: var(--accent);
-  font-style: normal;
-}
-
-p {
-  margin: 0 0 1.2rem;
-  color: var(--ink-dim);
+  margin-bottom: 1.75rem;
 }
 
 .lead {
-  font-size: 1.18rem;
-  line-height: 1.7;
-  color: var(--ink);
+  font-size: 1.05rem;
   font-weight: 300;
+  line-height: 1.8;
+  color: var(--ink-2);
+  margin-bottom: 1.25rem;
+  max-width: 38rem;
+}
+
+p {
+  color: var(--ink-2);
+  margin-bottom: 1.1rem;
 }
 
 strong {
@@ -170,258 +181,312 @@ strong {
   font-weight: 500;
 }
 
-/* ─── Connect / Social Links ─────────────── */
+code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 0.1em 0.4em;
+  color: var(--accent);
+}
 
+/* ── Section headings ────────────────────────── */
+h2 {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin: 3.5rem 0 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+h2::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ── Work card ───────────────────────────────── */
+.work-card {
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  padding: 1.5rem;
+  transition: border-color var(--t) var(--ease), background var(--t) var(--ease);
+}
+
+.work-card:hover {
+  border-color: var(--border-lit);
+  background: var(--bg-hover);
+}
+
+.work-card .work-role {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+
+.work-card .work-title {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+}
+
+.work-card p {
+  font-size: 0.92rem;
+  color: var(--ink-2);
+  margin: 0;
+}
+
+/* ── Connect / Social grid ───────────────────── */
 .connect {
-  padding: 0;
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 0.6rem;
-  margin: 0 0 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .connect li a {
   display: flex;
   align-items: center;
-  gap: 0.55rem;
-  padding: 0.6rem 0.9rem;
-  border: 1px solid var(--line-strong);
-  background: var(--bg-surface);
-  text-decoration: none;
-  font-size: 0.82rem;
-  letter-spacing: 0.06em;
-  color: var(--ink-dim);
-  transition: border-color var(--transition), color var(--transition), background var(--transition);
-  border-radius: 2px;
+  gap: 0.6rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--ink-2);
+  letter-spacing: 0.04em;
+  transition: border-color var(--t) var(--ease),
+              color var(--t) var(--ease),
+              background var(--t) var(--ease),
+              transform var(--t) var(--ease);
 }
 
 .connect li a:hover {
   border-color: var(--accent);
-  color: var(--accent);
-  background: rgba(201, 169, 110, 0.06);
+  color: var(--ink);
+  background: var(--accent-glow);
+  transform: translateY(-2px);
 }
 
-.connect li a .icon {
-  width: 1em;
-  height: 1em;
-  opacity: 0.7;
+.connect li a svg {
+  width: 15px;
+  height: 15px;
   flex-shrink: 0;
+  opacity: 0.6;
+  transition: opacity var(--t) var(--ease);
 }
 
-.connect li a:hover .icon {
+.connect li a:hover svg {
   opacity: 1;
 }
 
-/* ─── Tags / Skills ─────────────────────── */
-
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin: 0 0 1.5rem;
-  padding: 0;
-  list-style: none;
-}
-
-.tags li {
-  border: 1px solid var(--line-strong);
-  padding: 0.2rem 0.7rem;
-  font-size: 0.85rem;
-  color: var(--ink-dim);
-  background: var(--bg-surface);
-  letter-spacing: 0.03em;
-}
-
-/* ─── Year / Award blocks ────────────────── */
-
+/* ── Achievements ────────────────────────────── */
 .year-block {
-  margin: 0 0 2.5rem;
-  padding-top: 0.25rem;
+  margin-bottom: 3rem;
 }
 
 .year-block h2 {
   margin-top: 0;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--line);
-}
-
-.year-block h2::before {
-  content: "";
 }
 
 .award-list {
-  margin: 0;
-  padding: 0;
   list-style: none;
+  border-top: 1px solid var(--border);
 }
 
 .award-list li {
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
-  gap: 0.35rem 1.5rem;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.4rem 2rem;
   padding: 1rem 0;
-  border-bottom: 1px solid var(--line);
-  transition: border-color var(--transition);
+  border-bottom: 1px solid var(--border);
+  transition: border-color var(--t) var(--ease);
 }
 
 .award-list li:hover {
-  border-bottom-color: var(--line-strong);
+  border-bottom-color: var(--border-lit);
 }
 
 .award-name {
-  font-family: var(--font-display);
-  font-size: 1.15rem;
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
   font-style: italic;
   color: var(--ink);
 }
 
 .award-result {
-  font-size: 0.88rem;
-  letter-spacing: 0.06em;
-  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: var(--green);
+  text-transform: uppercase;
 }
 
-/* ─── Post list ──────────────────────────── */
-
+/* ── Blog post list ──────────────────────────── */
 .post-list {
-  margin: 0 0 1.5rem;
-  padding: 0;
   list-style: none;
+  border-top: 1px solid var(--border);
+  margin-bottom: 2rem;
 }
 
 .post-list li {
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
-  gap: 0.25rem 1rem;
-  padding: 0.9rem 0;
-  border-bottom: 1px solid var(--line);
-  transition: border-color var(--transition);
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.3rem 2rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border);
+  transition: border-color var(--t) var(--ease);
 }
 
 .post-list li:hover {
-  border-bottom-color: var(--line-strong);
+  border-bottom-color: var(--border-lit);
 }
 
 .post-list a {
-  font-family: var(--font-display);
-  font-size: 1.3rem;
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
   font-style: italic;
-  text-decoration: none;
   color: var(--ink);
-  transition: color var(--transition);
+  transition: color var(--t) var(--ease);
 }
 
 .post-list a:hover {
   color: var(--accent);
 }
 
-.post-list .muted {
-  color: var(--muted);
-  font-size: 0.88rem;
-  align-self: center;
-  letter-spacing: 0.04em;
+.post-list .muted,
+.muted {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--ink-3);
+  letter-spacing: 0.06em;
 }
 
-/* ─── Note / Back ────────────────────────── */
-
+/* ── Note / misc ─────────────────────────────── */
 .note {
-  margin-top: 2.5rem;
-  font-size: 0.92rem;
-  color: var(--muted);
+  margin-top: 2rem;
+  font-size: 0.88rem;
+  color: var(--ink-3);
+  font-family: var(--font-mono);
+  border-left: 2px solid var(--border-lit);
+  padding-left: 0.85rem;
 }
 
 .back {
-  margin-top: 2.5rem;
+  margin-top: 3rem;
 }
 
 .back a {
+  font-family: var(--font-mono);
   font-size: 0.72rem;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  text-decoration: none;
-  color: var(--ink-dim);
-  transition: color var(--transition);
+  color: var(--ink-3);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: color var(--t) var(--ease);
+}
+
+.back a::before {
+  content: "←";
 }
 
 .back a:hover {
   color: var(--accent);
 }
 
-/* ─── Footer ─────────────────────────────── */
-
-footer {
-  border-top: 1px solid var(--line-strong);
-  margin-top: 5rem;
-  padding-top: 1.75rem;
-}
-
-.footer-label {
-  margin: 0 0 0.6rem;
-  font-size: 0.68rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-.years {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem 1.75rem;
-  margin: 0;
-}
-
-.years a {
-  font-family: var(--font-display);
-  font-size: 1.25rem;
+/* ── Post article ────────────────────────────── */
+.post h2 {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
   font-style: italic;
-  text-decoration: none;
-  color: var(--ink-dim);
-  transition: color var(--transition);
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--ink);
+  margin: 2.5rem 0 1rem;
 }
 
-.years a:hover {
-  color: var(--accent);
-}
-
-/* ─── Post ───────────────────────────────── */
-
-.post h1.display {
-  margin-bottom: 1.75rem;
+.post h2::after {
+  display: none;
 }
 
 .post p {
-  color: var(--ink-dim);
+  color: var(--ink-2);
 }
 
-.post h2::before {
-  content: "";
+/* ── Footer ──────────────────────────────────── */
+footer {
+  margin-top: 6rem;
+  padding: 2rem 0 0;
+  border-top: 1px solid var(--border);
 }
 
-/* ─── Subtle decorative rule ─────────────── */
-
-hr {
-  border: none;
-  border-top: 1px solid var(--line);
-  margin: 2.5rem 0;
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
-/* ─── Responsive ─────────────────────────── */
+.footer-name {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--ink-3);
+  letter-spacing: 0.06em;
+}
 
-@media (max-width: 640px) {
+.footer-years {
+  display: flex;
+  gap: 1rem;
+}
+
+.footer-years a {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--ink-3);
+  transition: color var(--t) var(--ease);
+  letter-spacing: 0.04em;
+}
+
+.footer-years a:hover {
+  color: var(--accent);
+}
+
+/* ── Responsive ──────────────────────────────── */
+@media (max-width: 600px) {
   header {
-    flex-direction: column;
-    gap: 1rem;
+    gap: 1.25rem;
   }
 
   .connect {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .display,
-  h1 {
-    font-size: 2.2rem;
+  h1, .display {
+    font-size: 2rem;
+  }
+
+  nav {
+    flex-wrap: wrap;
   }
 }
