@@ -1,0 +1,15 @@
+title: Murtaza Abdullah
+description: About, blogs, and achievements.
+author: Murtaza Abdullah
+url: https://murtazaa2010.github.io
+baseurl: /murtaza.github.io
+markdown: kramdown
+permalink: /blogs/:year/:month/:day/:title/
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+years:
+  - 2026
+  - 2025
+  - 2024
